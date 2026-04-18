@@ -52,8 +52,9 @@ class RAGService:
         if self._initialized:
             return
 
-        if os.getenv("DISABLE_RAG", "false").lower() == "true":
-            logger.warning("⚠️ RAG Service locally disabled to save RAM. Returning fallback context.")
+        # Automatically disable RAG on Render to save RAM and prevent crashes.
+        if os.getenv("RENDER") == "true" or os.getenv("DISABLE_RAG", "false").lower() == "true":
+            logger.warning("⚠️ RAG Service automatically disabled on Render to save RAM. Returning fallback context.")
             self._initialized = True
             return
 
