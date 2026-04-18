@@ -52,6 +52,11 @@ class RAGService:
         if self._initialized:
             return
 
+        if os.getenv("DISABLE_RAG", "false").lower() == "true":
+            logger.warning("⚠️ RAG Service locally disabled to save RAM. Returning fallback context.")
+            self._initialized = True
+            return
+
         try:
             import chromadb
             from chromadb.config import Settings as ChromaSettings
