@@ -68,7 +68,7 @@ class Settings(BaseSettings):
     OTP_RESEND_SECONDS: int = 30
 
     # CORS
-    ALLOWED_ORIGINS: str = "http://localhost:8081,exp://localhost:8081,http://localhost:19000,http://localhost:19001,http://192.168.100.22:8081"
+    ALLOWED_ORIGINS: str = "http://localhost:8081,exp://localhost:8081,http://localhost:19000,http://localhost:19001,http://192.168.100.22:8081,*"
 
     model_config = SettingsConfigDict(
         env_file=".env",
